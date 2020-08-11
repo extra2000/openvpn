@@ -1,0 +1,3 @@
+.vagrant
+provisions/salt/keys/*
+!provisions/salt/keys/.gitkeep
