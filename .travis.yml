@@ -28,6 +28,8 @@ jobs:
         - sudo vagrant halt openvpn-server-box
         - sudo vagrant up --provider=libvirt openvpn-client-box
         - sudo vagrant halt openvpn-client-box
+        - sudo vagrant up --provider=libvirt openvpn-saltmaster
+        - sudo vagrant up --provider=libvirt openvpn-server-box
         - sudo vagrant destroy --force
 
     - stage: release
