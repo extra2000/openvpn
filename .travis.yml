@@ -16,7 +16,9 @@ jobs:
         - sudo dpkg -i vagrant_2.2.9_x86_64.deb
         - sudo vagrant plugin install vagrant-libvirt vagrant-scp vagrant-reload
       script:
-        - sudo vagrant up --provider=libvirt
+        - sudo vagrant up --provider=libvirt openvpn-saltmaster
+        - sudo vagrant up --provider=libvirt openvpn-server-box
+        - sudo vagrant up --provider=libvirt openvpn-client-box
         - sudo vagrant destroy --force
 
     - stage: release
