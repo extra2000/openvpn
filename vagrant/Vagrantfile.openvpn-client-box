@@ -29,8 +29,8 @@ Vagrant.configure("2") do |config|
       override.vagrant.plugins = config.vagrant.plugins + ["vagrant-libvirt"]
       override.vm.box_download_checksum_type = "sha256"
       override.vm.box_download_checksum = "48e14597e88a0663b1748ac2239de6fea5e9976687f5c57b1ba2480612a0b154"
-      v.cpus = "2"
-      v.cputopology sockets: "1", cores: "2", threads: "1"
+      v.cpus = "1"
+      v.cputopology sockets: "1", cores: "1", threads: "1"
       v.memory = "1024"
       v.disk_bus = "virtio"
       v.nic_model_type = "virtio-net-pci"
@@ -54,7 +54,7 @@ Vagrant.configure("2") do |config|
       override.vm.network "private_network", type: "dhcp"
       v.name = "openvpn-client-box"
       v.gui = false
-      v.cpus = "2"
+      v.cpus = "1"
       v.memory = "1024"
       v.linked_clone = true
       v.customize ["modifyvm", :id, '--natdnshostresolver1', 'on']
@@ -74,7 +74,7 @@ Vagrant.configure("2") do |config|
       override.vm.box_download_checksum = "51bb0495a2c01f25ed511ab02608d05c868285d17372be4efedd798f9ac1c81f"
       override.vm.network "private_network", type: "dhcp"
       v.maxmemory = "1024"
-      v.cpus = "2"
+      v.cpus = "1"
       v.memory = "1024"
 
       salt_provision_openvpn_client_box override
