@@ -23,8 +23,11 @@ jobs:
         - openssl genrsa -out provisions/salt/keys/openvpn-client-box.pem
         - openssl rsa -in provisions/salt/keys/openvpn-client-box.pem -pubout -out provisions/salt/keys/openvpn-client-box.pub
         - sudo vagrant up --provider=libvirt openvpn-saltmaster
+        - sudo vagrant halt openvpn-saltmaster
         - sudo vagrant up --provider=libvirt openvpn-server-box
+        - sudo vagrant halt openvpn-server-box
         - sudo vagrant up --provider=libvirt openvpn-client-box
+        - sudo vagrant halt openvpn-client-box
         - sudo vagrant destroy --force
 
     - stage: release
