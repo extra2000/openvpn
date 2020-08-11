@@ -16,6 +16,12 @@ jobs:
         - sudo dpkg -i vagrant_2.2.9_x86_64.deb
         - sudo vagrant plugin install vagrant-libvirt vagrant-scp vagrant-reload
       script:
+        - openssl genrsa -out provisions/salt/keys/openvpn-saltmaster.pem
+        - openssl rsa -in provisions/salt/keys/openvpn-saltmaster.pem -pubout -out provisions/salt/keys/openvpn-saltmaster.pub
+        - openssl genrsa -out provisions/salt/keys/openvpn-server-box.pem
+        - openssl rsa -in provisions/salt/keys/openvpn-server-box.pem -pubout -out provisions/salt/keys/openvpn-server-box.pub
+        - openssl genrsa -out provisions/salt/keys/openvpn-client-box.pem
+        - openssl rsa -in provisions/salt/keys/openvpn-client-box.pem -pubout -out provisions/salt/keys/openvpn-client-box.pub
         - sudo vagrant up --provider=libvirt openvpn-saltmaster
         - sudo vagrant up --provider=libvirt openvpn-server-box
         - sudo vagrant up --provider=libvirt openvpn-client-box
