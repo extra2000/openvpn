@@ -1,0 +1,38 @@
+os: Ubuntu
+platform:
+  - x64
+install:
+  - sudo apt-get update && sudo apt-get install -y bridge-utils dnsmasq-base ebtables libvirt-bin libvirt-dev qemu-kvm qemu-utils ruby-dev
+  - sudo wget -nv https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
+  - sudo dpkg -i vagrant_2.2.9_x86_64.deb
+  - sudo vagrant plugin install vagrant-libvirt vagrant-scp vagrant-reload vagrant-vbguest
+build_script:
+  - openssl genrsa -out provisions/salt/keys/openvpn-saltmaster.pem
+  - openssl rsa -in provisions/salt/keys/openvpn-saltmaster.pem -pubout -out provisions/salt/keys/openvpn-saltmaster.pub
+  - openssl genrsa -out provisions/salt/keys/openvpn-server-box.pem
+  - openssl rsa -in provisions/salt/keys/openvpn-server-box.pem -pubout -out provisions/salt/keys/openvpn-server-box.pub
+  - openssl genrsa -out provisions/salt/keys/openvpn-client-box.pem
+  - openssl rsa -in provisions/salt/keys/openvpn-client-box.pem -pubout -out provisions/salt/keys/openvpn-client-box.pub
+  - sudo vagrant up --provider=libvirt openvpn-saltmaster
+  - sudo vagrant halt openvpn-saltmaster
+  - sudo vagrant up --provider=libvirt openvpn-server-box
+  - sudo vagrant halt openvpn-server-box
+  - sudo vagrant up --provider=libvirt openvpn-client-box
+  - sudo vagrant halt openvpn-client-box
+  - sudo vagrant up --provider=libvirt openvpn-saltmaster
+  - sudo vagrant up --provider=libvirt openvpn-server-box
+  - sudo vagrant up --provider=libvirt openvpn-client-box
+  - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' state.highstate saltenv=base
+  - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' state.highstate saltenv=base
+  - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' state.sls openvpn.easyrsa
+  - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' state.sls openvpn.configure-server
+  - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' service.start openvpn@server
+  - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' service.enable openvpn@server
+  - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' state.sls openvpn.clientkey pillar=\'{"hostname":\ "openvpn-client-box"}\'
+  - sudo vagrant ssh openvpn-saltmaster -- sudo salt-cp --chunked 'openvpn-client-box' /var/cache/salt/master/minions/openvpn-server-box/files/etc/openvpn/client/ etc/openvpn/
+  - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' state.sls openvpn.configure-client pillar=\'{"hostname":\ "openvpn-client-box"}\'
+  - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' service.start openvpn@client
+  - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' service.enable openvpn@client
+  - sudo vagrant ssh openvpn-client-box -- ping 10.8.0.1 -c 10
+  - sudo vagrant destroy --force
+test: off
