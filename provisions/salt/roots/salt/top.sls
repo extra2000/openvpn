@@ -4,3 +4,4 @@ base:
     - common_packages
     - selinux
     - selinux.saltstack-minion
+    - openvpn

@@ -30,6 +30,7 @@ jobs:
         - sudo vagrant halt openvpn-client-box
         - sudo vagrant up --provider=libvirt openvpn-saltmaster
         - sudo vagrant up --provider=libvirt openvpn-server-box
+        - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' state.highstate saltenv=base
         - sudo vagrant destroy --force
 
     - stage: release

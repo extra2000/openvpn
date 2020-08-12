@@ -1,4 +1,4 @@
-common_packages:
+selinux_tools:
   pkg.installed:
     - pkgs:
       - checkpolicy
