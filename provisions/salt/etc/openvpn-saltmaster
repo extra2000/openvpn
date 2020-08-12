@@ -232,7 +232,7 @@ timeout: 300
 
 # Allow minions to push files to the master. This is disabled by default, for
 # security purposes.
-#file_recv: False
+file_recv: True
 
 # Set a hard-limit on the size of the files that can be pushed to the master.
 # It will be interpreted as megabytes. Default: 100

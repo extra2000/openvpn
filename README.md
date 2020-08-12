@@ -5,7 +5,41 @@
 Automate OpenVPN server deployment
 
 
-# Generate Saltstack Master and Minion Keys
+## Getting Started
+
+Make sure your current working directory is at the root of this project. Then, execute `vagrant up` with provider such as `virtualbox`, `libvirt`, or `hyperv`:
+```
+$ vagrant up --provider=virtualbox
+$ vagrant ssh openvpn-saltmaster -- sudo salt -L 'openvpn-server-box,openvpn-client-box' state.highstate saltenv=base
+```
+
+Initialize Easy-RSA on OpenVPN server:
+```
+$ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' state.sls openvpn.easyrsa
+```
+
+Configure OpenVPN server and enable service:
+```
+$ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' state.sls openvpn.configure-server
+$ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' service.start openvpn@server
+$ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' service.enable openvpn@server
+```
+
+To create OpenVPN keys for client:
+```
+$ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' state.sls openvpn.clientkey pillar=\'{"hostname": "openvpn-client-box"}\'
+$ vagrant ssh openvpn-saltmaster -- sudo salt-cp --chunked 'openvpn-client-box' /var/cache/salt/master/minions/openvpn-server-box/files/etc/openvpn/client/ etc/openvpn/
+```
+
+Configure OpenVPN client and enable service:
+```
+$ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' state.sls openvpn.configure-client pillar=\'{"hostname": "openvpn-client-box"}\'
+$ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' service.start openvpn@client
+$ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' service.enable openvpn@client
+```
+
+
+## Generate Saltstack Master and Minion Keys
 
 ```
 $ cd provisions/salt/keys
