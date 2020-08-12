@@ -45,7 +45,6 @@ verify_openvpn_server_key:
     - name: openssl verify -CAfile pki/ca.crt pki/issued/openvpn-server-box.crt
     - cwd: /etc/openvpn/easy-rsa
 
-$ sudo cp pki/dh.pem /etc/openvpn/server/
 /etc/openvpn/server/dh.pem:
   file.managed:
     - source: /etc/openvpn/easy-rsa/pki/dh.pem
