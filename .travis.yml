@@ -42,6 +42,7 @@ jobs:
         - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' state.sls openvpn.configure-client pillar=\'{"hostname": "openvpn-client-box"}\'
         - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' service.start openvpn@client
         - sudo vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' service.enable openvpn@client
+        - sudo vagrant ssh openvpn-client-box -- ping 10.8.0.1 -c 10
         - sudo vagrant destroy --force
 
     - stage: release
