@@ -9,6 +9,34 @@ Automate OpenVPN server deployment
 
 ## Getting Started
 
+
+### Generate Saltstack Master and Minion Keys
+
+```
+$ cd provisions/salt/keys
+```
+
+Generate key for `openvpn-saltmaster`:
+```
+$ openssl genrsa -out openvpn-saltmaster.pem
+$ openssl rsa -in openvpn-saltmaster.pem -pubout -out openvpn-saltmaster.pub
+```
+
+Generate key for `openvpn-server-box`:
+```
+$ openssl genrsa -out openvpn-server-box.pem
+$ openssl rsa -in openvpn-server-box.pem -pubout -out openvpn-server-box.pub
+```
+
+Generate key for `openvpn-client-box`:
+```
+$ openssl genrsa -out openvpn-client-box.pem
+$ openssl rsa -in openvpn-client-box.pem -pubout -out openvpn-client-box.pub
+```
+
+
+### Create Nodes and Deploy
+
 Make sure your current working directory is at the root of this project. Then, execute `vagrant up` with provider such as `virtualbox`, `libvirt`, or `hyperv`:
 ```
 $ vagrant up --provider=virtualbox
@@ -38,29 +66,4 @@ Configure OpenVPN client and enable service:
 $ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' state.sls openvpn.configure-client pillar=\'{"hostname": "openvpn-client-box"}\'
 $ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' service.start openvpn@client
 $ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' service.enable openvpn@client
-```
-
-
-## Generate Saltstack Master and Minion Keys
-
-```
-$ cd provisions/salt/keys
-```
-
-Generate key for `openvpn-saltmaster`:
-```
-$ openssl genrsa -out openvpn-saltmaster.pem
-$ openssl rsa -in openvpn-saltmaster.pem -pubout -out openvpn-saltmaster.pub
-```
-
-Generate key for `openvpn-server-box`:
-```
-$ openssl genrsa -out openvpn-server-box.pem
-$ openssl rsa -in openvpn-server-box.pem -pubout -out openvpn-server-box.pub
-```
-
-Generate key for `openvpn-client-box`:
-```
-$ openssl genrsa -out openvpn-client-box.pem
-$ openssl rsa -in openvpn-client-box.pem -pubout -out openvpn-client-box.pub
 ```
