@@ -55,15 +55,17 @@ $ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' service.start
 $ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' service.enable openvpn@server
 ```
 
-To create OpenVPN keys for client:
+To create OpenVPN keys for client (NOTE: Cannot use `vagrant ssh` when using parameter `pillar=` because it is difficult for Windows Powershell to escape single quote):
 ```
-$ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-server-box' state.sls openvpn.clientkey pillar=\'{"hostname": "openvpn-client-box"}\'
-$ vagrant ssh openvpn-saltmaster -- sudo salt-cp --chunked 'openvpn-client-box' /var/cache/salt/master/minions/openvpn-server-box/files/etc/openvpn/client/ etc/openvpn/
+$ vagrant ssh openvpn-saltmaster
+[vagrant@openvpn-saltmaster ~]$ sudo salt 'openvpn-server-box' state.sls openvpn.clientkey pillar='{"hostname": "openvpn-client-box"}'
+[vagrant@openvpn-saltmaster ~]$ sudo salt-cp --chunked 'openvpn-client-box' /var/cache/salt/master/minions/openvpn-server-box/files/etc/openvpn/client/ etc/openvpn/
 ```
 
 Configure OpenVPN client and enable service:
 ```
-$ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' state.sls openvpn.configure-client pillar=\'{"hostname": "openvpn-client-box"}\'
-$ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' service.start openvpn@client
-$ vagrant ssh openvpn-saltmaster -- sudo salt 'openvpn-client-box' service.enable openvpn@client
+$ vagrant ssh openvpn-saltmaster
+[vagrant@openvpn-saltmaster ~]$ sudo salt 'openvpn-client-box' state.sls openvpn.configure-client pillar='{"hostname": "openvpn-client-box"}'
+[vagrant@openvpn-saltmaster ~]$ sudo salt 'openvpn-client-box' service.start openvpn@client
+[vagrant@openvpn-saltmaster ~]$ sudo salt 'openvpn-client-box' service.enable openvpn@client
 ```
