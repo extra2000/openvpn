@@ -1,8 +1,8 @@
 # openvpn
 
-| License | Versioning | Build |
-| ------- | ---------- | ----- |
-| [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) | [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) | [![Build Status](https://travis-ci.com/extra2000/openvpn.svg?branch=master)](https://travis-ci.com/extra2000/openvpn) [![Build status](https://ci.appveyor.com/api/projects/status/xwl74yxorjweclgo/branch/master?svg=true)](https://ci.appveyor.com/project/nikAizuddin/openvpn/branch/master) |
+| License | Versioning | Build | Slack |
+| ------- | ---------- | ----- | ----- |
+| [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) | [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) | [![Build Status](https://travis-ci.com/extra2000/openvpn.svg?branch=master)](https://travis-ci.com/extra2000/openvpn) [![Build status](https://ci.appveyor.com/api/projects/status/xwl74yxorjweclgo/branch/master?svg=true)](https://ci.appveyor.com/project/nikAizuddin/openvpn/branch/master) | [<img src="https://img.shields.io/badge/slack-@extra2000/openvpn-blue.svg?logo=slack">](https://extra2000.slack.com/archives/C018Y1XT42G) |
 
 Automate OpenVPN server deployment
 
