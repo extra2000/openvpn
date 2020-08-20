@@ -3,12 +3,12 @@
 
 def salt_provision_openvpn_saltmaster(context)
   context.vm.provision 'salt', run: 'once' do |salt|
-    salt.master_config = "provisions/salt/etc/openvpn-saltmaster"
-    salt.master_key = "provisions/salt/keys/openvpn-saltmaster.pem"
-    salt.master_pub = "provisions/salt/keys/openvpn-saltmaster.pub"
+    salt.master_config = "salt/etc/openvpn-saltmaster"
+    salt.master_key = "salt/keys/openvpn-saltmaster.pem"
+    salt.master_pub = "salt/keys/openvpn-saltmaster.pub"
     salt.seed_master = {
-      "openvpn-server-box" => "provisions/salt/keys/openvpn-server-box.pub",
-      "openvpn-client-box" => "provisions/salt/keys/openvpn-client-box.pub"
+      "openvpn-server-box" => "salt/keys/openvpn-server-box.pub",
+      "openvpn-client-box" => "salt/keys/openvpn-client-box.pub"
     }
     salt.install_master = true
     salt.no_minion = true
@@ -85,7 +85,7 @@ Vagrant.configure("2") do |config|
       salt_provision_openvpn_saltmaster override
     end
 
-    openvpn_saltmaster.vm.synced_folder "provisions/salt/roots/", "/srv/", type: "rsync"
+    openvpn_saltmaster.vm.synced_folder "salt/roots/", "/srv/", type: "rsync"
     openvpn_saltmaster.vm.synced_folder '.', '/vagrant', disabled: true
   end
 

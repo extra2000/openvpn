@@ -13,7 +13,7 @@ Automate OpenVPN server deployment
 ### Generate Saltstack Master and Minion Keys
 
 ```
-$ cd provisions/salt/keys
+$ cd salt/keys
 ```
 
 Generate key for `openvpn-saltmaster`:

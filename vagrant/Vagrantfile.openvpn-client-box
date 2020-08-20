@@ -3,9 +3,9 @@
 
 def salt_provision_openvpn_client_box(context)
   context.vm.provision "salt", run: 'once' do |salt|
-    salt.minion_config = "provisions/salt/etc/openvpn-client-box"
-    salt.minion_key = "provisions/salt/keys/openvpn-client-box.pem"
-    salt.minion_pub = "provisions/salt/keys/openvpn-client-box.pub"
+    salt.minion_config = "salt/etc/openvpn-client-box"
+    salt.minion_key = "salt/keys/openvpn-client-box.pem"
+    salt.minion_pub = "salt/keys/openvpn-client-box.pub"
     salt.run_highstate = false
     salt.verbose = true
     salt.log_level = "info"
