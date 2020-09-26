@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.3.5](https://github.com/extra2000/openvpn/compare/v1.3.4...v1.3.5) (2020-09-26)
+
+
+### Continuous Integrations
+
+* **travis:** Add Slack notifications ([7260942](https://github.com/extra2000/openvpn/commit/72609420b42f13dea57085eaf36d549a356d7c02))
+
 ### [1.3.4](https://github.com/extra2000/openvpn/compare/v1.3.3...v1.3.4) (2020-09-25)
 
 
