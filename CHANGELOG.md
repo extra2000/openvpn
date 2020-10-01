@@ -1,16 +1,16 @@
 # Changelog
 
-### [1.3.5](https://github.com/extra2000/openvpn/compare/v1.3.4...v1.3.5) (2020-09-26)
+### [1.3.5](https://github.com/extra2000/openvpn-box/compare/v1.3.4...v1.3.5) (2020-09-26)
 
 
 ### Continuous Integrations
 
-* **travis:** Add Slack notifications ([7260942](https://github.com/extra2000/openvpn/commit/72609420b42f13dea57085eaf36d549a356d7c02))
+* **travis:** Add Slack notifications ([7260942](https://github.com/extra2000/openvpn-box/commit/72609420b42f13dea57085eaf36d549a356d7c02))
 
-### [1.3.4](https://github.com/extra2000/openvpn/compare/v1.3.3...v1.3.4) (2020-09-25)
+### [1.3.4](https://github.com/extra2000/openvpn-box/compare/v1.3.3...v1.3.4) (2020-09-25)
 
 
 ### Continuous Integrations
 
-* **semantic-release:** Add @commitlint/cli and @commitlint/config-conventional ([5d3d933](https://github.com/extra2000/openvpn/commit/5d3d93337cc93a68964bc494cd08e4d3133429ec))
-* **semantic-release:** Replace .releaserc from extra2000/openfortivpn ([150a43a](https://github.com/extra2000/openvpn/commit/150a43a8fef758ae2327a0e2f276ee1f06a3c93c))
+* **semantic-release:** Add @commitlint/cli and @commitlint/config-conventional ([5d3d933](https://github.com/extra2000/openvpn-box/commit/5d3d93337cc93a68964bc494cd08e4d3133429ec))
+* **semantic-release:** Replace .releaserc from extra2000/openfortivpn ([150a43a](https://github.com/extra2000/openvpn-box/commit/150a43a8fef758ae2327a0e2f276ee1f06a3c93c))
