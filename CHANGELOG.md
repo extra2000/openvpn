@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.3.7](https://github.com/extra2000/openvpn-box/compare/v1.3.6...v1.3.7) (2020-10-02)
+
+
+### Continuous Integrations
+
+* **semantic-release:** Add fix type ([3264de8](https://github.com/extra2000/openvpn-box/commit/3264de8bb5d0256793c45b637b69774452b71ec8))
+
 ### [1.3.6](https://github.com/extra2000/openvpn/compare/v1.3.5...v1.3.6) (2020-10-01)
 
 
